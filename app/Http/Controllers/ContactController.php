@@ -25,14 +25,31 @@ class ContactController extends Controller
 
     }
     public function create(){
-        return view('contacts.create');
+        $companies = Company::orderBy('name')->pluck('name','id')->prepend("All Companies", '');
+        return view('contacts.create', compact('companies'));
     }
     public function show($id){
         $contact = Contact::find($id);
         // return $contact;
         return view('contacts.singleContact', ['contact'=>$contact]);
     }
-    public function store(Request $request){}
+    public function store(Request $request){
+        // dd($request->all());
+        $request->validate([
+            'first_name' => "required",
+            'last_name' => "required",
+            'email' => "required|email",
+            'address' => "required",
+            'company_id' => "required|exists:companies,id",// does it exist in company table or not and id is the primary key
+        ]);
+
+       Contact::create($request->all()); // mass assignment
+
+    //    return redirect('/contacts');
+
+    return redirect()->route('contacts.index')->with('message', "Contact has been added successfully.");
+
+    }
 
     public function edit($id){}
     public function update(Request $request, $id){}

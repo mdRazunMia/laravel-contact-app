@@ -9,6 +9,9 @@
         <div class="row">
           <div class="col-md-12">
             <div class="card">
+                   @if ($message = session('message'))
+                    <div class="alert alert-success text-center">{{ $message }}</div>
+                    @endif
                 <div class="card-header card-title">
                   <div class="d-flex align-items-center">
                     <h2 class="mb-0">All Contacts</h2>
