@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\CompainiesController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Contact;
 use App\Models\Company;
@@ -16,31 +18,53 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-// Route::get('/companies',[CompainiesController::class, 'index']);
-Route::resource('/companies',CompainiesController::class);
+// // Route::get('/companies',[CompainiesController::class, 'index']);
+// Route::resource('/companies',CompainiesController::class);
 
-Route::get('/contacts', function(){
-    return Contact::all();
-});
+// Route::get('/contacts', function(){
+//     return Contact::all();
+// });
 
-Route::get('/contacts/create', function(Request $request){
+// Route::get('/contacts/create', function(Request $request){
 
-    $company= Company::first();
-    $contact = new Contact;
-    $contact->first_name = "Bappi";
-    $contact->last_name = "Haque";
-    $contact->phone = "01779580666";
-    $contact->email = "bappi@gmail.com";
-    $contact->address = "khulna";
-    $contact->company_id = $company->id;
-    $contact->save();
-    return "New contact has been added into contacts table.";
-});
+//     $company= Company::first();
+//     $contact = new Contact;
+//     $contact->first_name = "Bappi";
+//     $contact->last_name = "Haque";
+//     $contact->phone = "01779580666";
+//     $contact->email = "bappi@gmail.com";
+//     $contact->address = "khulna";
+//     $contact->company_id = $company->id;
+//     $contact->save();
+//     return "New contact has been added into contacts table.";
+// });
 
-Route::get('/contacts/{id}', function($id){
-    return Contact::find($id);
-});
+// Route::get('/contacts/{id}', function($id){
+//     return Contact::find($id);
+// });
+
+
+// ---------------------------------------------------------------
+
+
+// name route
+
+// Route::get('/contacts', function(){
+//     return Contact::all();
+// })->name('contacts.index');
+
+Route::get('/home',[HomeController::class, 'index'])->name('home.welcome');
+
+Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+Route::get('/contacts/create',[ContactController::class, 'create'])->name('contacts.create');
+Route::get('/contacts/create',[ContactController::class, 'create'])->name('contacts.create');
+Route::get('/contacts/create',[ContactController::class, 'create'])->name('contacts.create');
+Route::get('/contacts/create',[ContactController::class, 'create'])->name('contacts.create');
+
+Route::get('companies', [CompanyController::class, 'index'])->name('companies.index');
+
+

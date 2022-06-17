@@ -46,23 +46,11 @@
         </div>
       </div>
     </nav>
-     <main class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-                <div class="card-header card-title">
-                  <div class="d-flex align-items-center">
-                    <div class="card-body">
-                          Welcome to the <strong>Contact App. </strong>
-                     </div>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
+    {{-- content --}}
+
+    @yield('content')
+
+    {{-- content --}}
       <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>

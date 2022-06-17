@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use Illuminate\Http\Request;
 
-class CompainiesController extends Controller
+class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class CompainiesController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
-        return $companies;
+        $companies = Company::orderBy('name','asc')->paginate(2);
+        return view('companies.index', compact('companies'));
     }
 
     /**
