@@ -25,7 +25,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-
+        return view('companies.create');
     }
 
     /**
@@ -36,6 +36,14 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'name' => "required",
+            'address' => "required",
+            'email' => "required|email",
+            'website' => "required",// does it exist in company table or not and id is the primary key
+        ]);
+        
         $company = new Company();
 
         $company->name = $request->name;
@@ -43,6 +51,8 @@ class CompanyController extends Controller
         $company->website = $request->website;
         $company->email = $request->email;
         $company->save();
+
+        return redirect()->route('companies.index')->with('message', 'Company has been created successfully');
     }
 
     /**
@@ -54,7 +64,7 @@ class CompanyController extends Controller
     public function show($id)
     {
         $company = Company::find($id);
-        return $company;
+        return view('companies.singleCompany',compact('company'));
     }
 
     /**
