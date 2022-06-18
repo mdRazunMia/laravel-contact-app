@@ -43,7 +43,7 @@ class CompanyController extends Controller
             'email' => "required|email",
             'website' => "required",// does it exist in company table or not and id is the primary key
         ]);
-        
+
         $company = new Company();
 
         $company->name = $request->name;
@@ -75,7 +75,9 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company = Company::find($id);
+
+        return view('companies.edit', compact('company'));
     }
 
     /**
@@ -87,7 +89,23 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'name' => "required",
+            'address' => "required",
+            'email' => "required|email",
+            'website' => "required",// does it exist in company table or not and id is the primary key
+        ]);
+
+        $company = Company::find($id);
+
+        $company->name = $request->name;
+        $company->address = $request->address;
+        $company->website = $request->website;
+        $company->email = $request->email;
+        $company->update();
+
+        return redirect()->route('companies.index')->with('message', 'Company has been updated successfully');
     }
 
     /**
