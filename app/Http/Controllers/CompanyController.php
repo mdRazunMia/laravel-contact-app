@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use Illuminate\Console\Command;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -114,8 +115,11 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+        $company = Company::findOrFail($id);
+        $company->delete();
+
+        // return back()->with('message', 'Contact has been deleted successfully');
+        return redirect()->route('companies.index')->with('message', 'Comapny has been deleted successfully');
     }
 }

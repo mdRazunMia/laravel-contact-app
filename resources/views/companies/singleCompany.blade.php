@@ -45,7 +45,7 @@
                     <hr>
                     <div class="form-group row mb-0">
                       <div class="col-md-9 offset-md-3">
-                          <a href="{{ route('companies.edit', $company->id) }}" class="btn btn-info">Edit</a>
+                          <a href="{{ route('companies.edit', $company->id)}}" class="btn btn-info">Edit</a>
                           {{-- <a href="{{ route('contacts.destroy', $contact->id ) }}" class="btn-delete btn btn-outline-danger">Delete</a> --}}
                           <a href="{{ route('companies.index') }}" class="btn btn-outline-secondary">Cancel</a>
                       </div>
